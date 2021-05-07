@@ -1,0 +1,52 @@
+<div class="login-section">
+    <div class="row justify-content-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header" style="text-align: center"><h4>Login</h4></div>
+                <div class="card-body">
+                    <form (ngSubmit)="login()" [formGroup]="loginForm">
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right" for="user_name">Username</label>
+                            <div class="col-md-6">
+                                <input [formControlName]="'username'" autofocus class="form-control" id="user_name"
+                                       name="user_name" required
+                                       type="text">
+                                <span *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">
+                                   Please provide a valid username
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right" for="password">Password</label>
+                            <div class="col-md-6">
+                                <input [formControlName]="'password'" class="form-control" id="password" name="password"
+                                       required type="password">
+                                <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">
+                                  Password cannot be empty
+                                </span>
+                            </div>
+                        </div>
+
+                        <span class="col-md-6 offset-md-4">
+                            <button class="login mb-3" type="submit">
+                                Login
+                            </button><br>
+                            <span class="col-md-6 offset-md-4" style="padding-left: 15px">New User? <a
+                                routerLink="/sign-up">SIGN UP</a></span>
+                        </span>
+                        <div *ngIf='this.isError' class="login-failed">
+                            <p class="login-failed-text">Login Failed. Please check your credentials and try again.</p>
+                        </div>
+                        <div *ngIf="this.registerSuccessMessage" [ngStyle]="{'background-color': 'green'}"
+                             class="login-failed">
+                            <p class="register-success-text">{{registerSuccessMessage}}</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

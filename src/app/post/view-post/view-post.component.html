@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <hr/>
+        <div class="col-md-9">
+            <div class="row post">
+                <div class="col-md-1">
+                    <app-vote-button [post]="post"></app-vote-button>
+                </div>
+                <div class="col-md-11">
+          <span>
+            <span class="subreddit-text"><a class="post-url" href="">{{post.subredditName}}</a></span>
+            <span> . Posted
+              <span> {{post.duration}} </span>
+              by
+              <a class="username" href="">{{post.userName}}</a>
+            </span>
+          </span>
+                    <hr/>
+                    <a class="post-title" routerLink="post.url">{{post.postName}}</a>
+                    <div>
+                        <p [innerHtml]="post.description" class="post-text"></p>
+                    </div>
+                    <div class="post-comment">
+                        <form (ngSubmit)="postComment()" [formGroup]="commentForm">
+                            <div class="form-group">
+                                <textarea [formControlName]="'text'" class="form-control"
+                                          placeholder="Your Thoughts?"></textarea>
+                            </div>
+                            <button class="login float-right" type="submit">Comment</button>
+                        </form>
+                    </div>
+                    <div *ngFor="let comment of comments" style="margin-top: 60px;">
+                        <div class="comment">
+                            <div class="username">
+                                <a routerLink="/user/comment.username">{{comment.userName}}</a>
+                            </div>
+                            <div>
+                                <p>{{comment.duration}}</p>
+                            </div>
+                            <b>{{comment.text}}</b>
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <app-side-bar></app-side-bar>
+            <app-subreddit-side-bar></app-subreddit-side-bar>
+        </div>
+    </div>
+</div>
